@@ -1,0 +1,93 @@
+--information:複数の動画を比較のためなどに配置しやすくするスクリプト。
+--file@movie1:動画1
+--file@movie2:動画2
+--file@movie3:動画3
+--file@movie4:動画4
+--group:動画5~6,false
+--file@movie5:動画5
+--file@movie6:動画6
+--group
+--track@common_lr:左右削減,0,100,0,1
+--track@common_ub:上下削減,0,100,0,1
+--check@fill:削減部分に合わせて動画を引き延ばす,1
+--select@arrangement:表示タイプ=0,交互に並べる=0,横に並べる=1,縦に並べる=2,1つ目縦いっぱい残り横=3,1つ目横いっぱい残り横=4,2つ目まで縦いっぱい残り横=5,2つ目まで横いっぱい残り横=6
+--track@line:分割ライン,0,500,1,1
+--track@line_w:分割ライン横,0,500,0,1
+--track@line_h:分割ライン縦,0,500,0,1
+--color@line_col:分割ライン色,0xffffff
+
+-- forで使う用の配列
+local movies = {movie1, movie2, movie3, movie4, movie5, movie6}
+-- loadで読み込む用の配列
+local using_movies = {}
+
+-- 指定された動画の数を判定した数値をsumに格納
+local sum = 0
+for i = 1, #movies do
+    if movies[i] and movies[i] ~= "" then
+        sum = sum + 1
+        using_movies[sum - 1] = movies[i]
+    end
+end
+
+-- 画面サイズの横と縦を変数に代入
+local w,h = obj.screen_w,obj.screen_h
+
+-- 描画先を仮想バッファに指定
+obj.setoption("drawtarget","tempbuffer",w,h)
+
+-- 本処理
+if sum ~= 0 then
+local base_w = w / 4
+local base_h = h / 4
+local MAX_TRACK = 100
+
+for i = 1, sum do
+    obj.load(using_movies[i - 1])
+
+-- 【正規化計算】
+    -- 現在読み込んだ動画のサイズ (obj.w, obj.h) を基準に、
+    -- トラックバーの値が最大値のときに「片側50%（両側で100%）」削るピクセル数を算出
+    local clip_lr = obj.w * (common_lr / MAX_TRACK) / 2
+    local clip_ub = obj.h * (common_ub / MAX_TRACK) / 2
+    
+    -- 正規化したピクセル数を適用
+    obj.effect("クリッピング", 
+        "上", clip_ub, 
+        "下", clip_ub, 
+        "左", clip_lr, 
+        "右", clip_lr, 
+        "中心の位置を変更", 0
+    )
+
+    -- 三項演算子代わりの and/or 構文を使用
+    -- X軸: 1,3,5...はマイナス / 2,4,6...はプラス
+    local sign_x = ((i - 1) % 2 == 0) and -1 or 1
+    -- Y軸: 1,2はマイナス / 3,4はプラス / 5,6はマイナス... （2行ずつの交互）
+    local sign_y = (math.floor((i - 1) / 2) % 2 == 0) and -1 or 1
+    
+    local fw = base_w * sign_x
+    local fh = base_h * sign_y
+    
+    obj.effect("リサイズ","拡大率",50.000)
+    
+    obj.draw(fw, fh)
+
+end
+
+if line ~= 0 or line_w ~= 0 or line_h ~= 0 then
+    obj.load("figure","四角形",line_col,2000)
+    obj.effect("リサイズ","拡大率",100.000,"X",line + line_w,"Y",line + 100.000,"補間なし",0,"ピクセル数でサイズ指定",0)
+    obj.draw()
+    obj.load("figure","四角形",line_col,2000)
+    obj.effect("リサイズ","拡大率",100.000,"X",line + 100.000,"Y",line + line_h,"補間なし",0,"ピクセル数でサイズ指定",0)
+    obj.draw()
+end
+    obj.setoption("drawtarget","framebuffer")
+    obj.load("tempbuffer")
+    return
+else
+    obj.setoption("drawtarget","framebuffer")
+    obj.load("tempbuffer")
+    return
+end
