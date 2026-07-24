@@ -1,0 +1,866 @@
+--information:複数の動画を比較のためなどに配置しやすくするスクリプト。
+--group:動画1,true
+--file@movie1:動画1
+--select@order1:動画1の表示順=0,標準=0,動画1=1,動画2=2,動画3=3,動画4=4,動画5=5,動画6=6,動画7=7,動画8=8,動画9=9
+--check@dup_movie1:自分より前の動画を読み込むか決める,0
+--separator:開始終了秒数
+--track@start_minuts1:開始秒数,0,10000,0,0.01
+--track@start_frame1:開始フレーム数,0,10000,0,1
+--track@end_minuts1:終了秒数,0,10000,0,0.01
+--track@end_frame1:終了フレーム数,0,10000,0,1
+--check@image1:開始秒数+開始フレームの瞬間を静止画にする,0
+--check@roop1:ループする,1
+--group
+--group:動画1詳細,false
+--separator:再生速度
+--select@speed_select1:再生速度A=3,*0.1=0,*0.25=1,*0.5=2,等速=3,*1.25=4,*1.5=5,*2=6,*3=7,*5=8,*10=9
+--track@movie_speed1:再生速度,0,800,100,1
+--separator:削減
+--track@clip_all1:上下左右削減,0,100,0,1
+--track@clip_lr1:左右削減,0,100,0,1
+--track@clip_l1:左削減,0,100,0,1
+--track@clip_r1:右削減,0,100,0,1
+--track@clip_ub1:上下削減,0,100,0,1
+--track@clip_u1:上削減,0,100,0,1
+--track@clip_d1:下削減,0,100,0,1
+--check@fill1:個別の削除部分に合わせて動画を引き延ばす,1
+--separator:拡大
+--track@zoom_whole1:全体拡大,0,10000,100,1
+--track@zoom_x1:拡大X,0,10000,100,1
+--track@zoom_y1:拡大Y,0,10000,100,1
+--track@zoom_posx1:拡大場所X,-10000,10000,0,0.01
+--track@zoom_posy1:拡大場所Y,-10000,10000,0,0.01
+--group
+
+--group:動画2,true
+--file@movie2:動画2
+--select@order2:動画2の表示順=0,標準=0,動画1=1,動画2=2,動画3=3,動画4=4,動画5=5,動画6=6,動画7=7,動画8=8,動画9=9
+--check@dup_movie2:自分より前の動画を読み込むか決める,0
+--separator:開始終了秒数
+--track@start_minuts2:開始秒数,0,10000,0,0.01
+--track@start_frame2:開始フレーム数,0,10000,0,1
+--track@end_minuts2:終了秒数,0,10000,0,0.01
+--track@end_frame2:終了フレーム数,0,10000,0,1
+--check@image2:開始秒数+開始フレームの瞬間を静止画にする,0
+--check@roop2:ループする,1
+--group
+--group:動画2詳細,false
+--separator:再生速度
+--select@speed_select2:再生速度A=3,*0.1=0,*0.25=1,*0.5=2,等速=3,*1.25=4,*1.5=5,*2=6,*3=7,*5=8,*10=9
+--track@movie_speed2:再生速度,0,800,100,1
+--separator:削減
+--track@clip_all2:上下左右削減,0,100,0,1
+--track@clip_lr2:左右削減,0,100,0,1
+--track@clip_l2:左削減,0,100,0,1
+--track@clip_r2:右削減,0,100,0,1
+--track@clip_ub2:上下削減,0,100,0,1
+--track@clip_u2:上削減,0,100,0,1
+--track@clip_d2:下削減,0,100,0,1
+--check@fill2:個別の削除部分に合わせて動画を引き延ばす,1
+--separator:拡大
+--track@zoom_whole2:全体拡大,0,10000,100,1
+--track@zoom_x2:拡大X,0,10000,100,1
+--track@zoom_y2:拡大Y,0,10000,100,1
+--track@zoom_posx2:拡大場所X,-10000,10000,0,0.01
+--track@zoom_posy2:拡大場所Y,-10000,10000,0,0.01
+--group
+
+--group:動画3,true
+--file@movie3:動画3
+--select@order3:動画3の表示順=0,標準=0,動画1=1,動画2=2,動画3=3,動画4=4,動画5=5,動画6=6,動画7=7,動画8=8,動画9=9
+--check@dup_movie3:自分より前の動画を読み込むか決める,0
+--separator:開始終了秒数
+--track@start_minuts3:開始秒数,0,10000,0,0.01
+--track@start_frame3:開始フレーム数,0,10000,0,1
+--track@end_minuts3:終了秒数,0,10000,0,0.01
+--track@end_frame3:終了フレーム数,0,10000,0,1
+--check@image3:開始秒数+開始フレームの瞬間を静止画にする,0
+--check@roop3:ループする,1
+--group
+--group:動画3詳細,false
+--separator:再生速度
+--select@speed_select3:再生速度A=3,*0.1=0,*0.25=1,*0.5=2,等速=3,*1.25=4,*1.5=5,*2=6,*3=7,*5=8,*10=9
+--track@movie_speed3:再生速度,0,800,100,1
+--separator:削減
+--track@clip_all3:上下左右削減,0,100,0,1
+--track@clip_lr3:左右削減,0,100,0,1
+--track@clip_l3:左削減,0,100,0,1
+--track@clip_r3:右削減,0,100,0,1
+--track@clip_ub3:上下削減,0,100,0,1
+--track@clip_u3:上削減,0,100,0,1
+--track@clip_d3:下削減,0,100,0,1
+--check@fill3:個別の削除部分に合わせて動画を引き延ばす,1
+--separator:拡大
+--track@zoom_whole3:全体拡大,0,10000,100,1
+--track@zoom_x3:拡大X,0,10000,100,1
+--track@zoom_y3:拡大Y,0,10000,100,1
+--track@zoom_posx3:拡大場所X,-10000,10000,0,0.01
+--track@zoom_posy3:拡大場所Y,-10000,10000,0,0.01
+--group
+
+--group:動画4,true
+--file@movie4:動画4
+--select@order4:動画4の表示順=0,標準=0,動画1=1,動画2=2,動画3=3,動画4=4,動画5=5,動画6=6,動画7=7,動画8=8,動画9=9
+--check@dup_movie4:自分より前の動画を読み込むか決める,0
+--separator:開始終了秒数
+--track@start_minuts4:開始秒数,0,10000,0,0.01
+--track@start_frame4:開始フレーム数,0,10000,0,1
+--track@end_minuts4:終了秒数,0,10000,0,0.01
+--track@end_frame4:終了フレーム数,0,10000,0,1
+--check@image4:開始秒数+開始フレームの瞬間を静止画にする,0
+--check@roop4:ループする,1
+--group
+--group:動画4詳細,false
+--separator:再生速度
+--select@speed_select4:再生速度A=3,*0.1=0,*0.25=1,*0.5=2,等速=3,*1.25=4,*1.5=5,*2=6,*3=7,*5=8,*10=9
+--track@movie_speed4:再生速度,0,800,100,1
+--separator:削減
+--track@clip_all4:上下左右削減,0,100,0,1
+--track@clip_lr4:左右削減,0,100,0,1
+--track@clip_l4:左削減,0,100,0,1
+--track@clip_r4:右削減,0,100,0,1
+--track@clip_ub4:上下削減,0,100,0,1
+--track@clip_u4:上削減,0,100,0,1
+--track@clip_d4:下削減,0,100,0,1
+--check@fill4:個別の削除部分に合わせて動画を引き延ばす,1
+--separator:拡大
+--track@zoom_whole4:全体拡大,0,10000,100,1
+--track@zoom_x4:拡大X,0,10000,100,1
+--track@zoom_y4:拡大Y,0,10000,100,1
+--track@zoom_posx4:拡大場所X,-10000,10000,0,0.01
+--track@zoom_posy4:拡大場所Y,-10000,10000,0,0.01
+--group
+
+--group:動画5,true
+--file@movie5:動画5
+--select@order5:動画5の表示順=0,標準=0,動画1=1,動画2=2,動画3=3,動画4=4,動画5=5,動画6=6,動画7=7,動画8=8,動画9=9
+--check@dup_movie5:自分より前の動画を読み込むか決める,0
+--separator:開始終了秒数
+--track@start_minuts5:開始秒数,0,10000,0,0.01
+--track@start_frame5:開始フレーム数,0,10000,0,1
+--track@end_minuts5:終了秒数,0,10000,0,0.01
+--track@end_frame5:終了フレーム数,0,10000,0,1
+--check@image5:開始秒数+開始フレームの瞬間を静止画にする,0
+--check@roop5:ループする,1
+--group
+--group:動画5詳細,false
+--separator:再生速度
+--select@speed_select5:再生速度A=3,*0.1=0,*0.25=1,*0.5=2,等速=3,*1.25=4,*1.5=5,*2=6,*3=7,*5=8,*10=9
+--track@movie_speed5:再生速度,0,800,100,1
+--separator:削減
+--track@clip_all5:上下左右削減,0,100,0,1
+--track@clip_lr5:左右削減,0,100,0,1
+--track@clip_l5:左削減,0,100,0,1
+--track@clip_r5:右削減,0,100,0,1
+--track@clip_ub5:上下削減,0,100,0,1
+--track@clip_u5:上削減,0,100,0,1
+--track@clip_d5:下削減,0,100,0,1
+--check@fill5:個別の削除部分に合わせて動画を引き延ばす,1
+--separator:拡大
+--track@zoom_whole5:全体拡大,0,10000,100,1
+--track@zoom_x5:拡大X,0,10000,100,1
+--track@zoom_y5:拡大Y,0,10000,100,1
+--track@zoom_posx5:拡大場所X,-10000,10000,0,0.01
+--track@zoom_posy5:拡大場所Y,-10000,10000,0,0.01
+--group
+
+--group:動画6,true
+--file@movie6:動画6
+--select@order6:動画6の表示順=0,標準=0,動画1=1,動画2=2,動画3=3,動画4=4,動画5=5,動画6=6,動画7=7,動画8=8,動画9=9
+--check@dup_movie6:自分より前の動画を読み込むか決める,0
+--separator:開始終了秒数
+--track@start_minuts6:開始秒数,0,10000,0,0.01
+--track@start_frame6:開始フレーム数,0,10000,0,1
+--track@end_minuts6:終了秒数,0,10000,0,0.01
+--track@end_frame6:終了フレーム数,0,10000,0,1
+--check@image6:開始秒数+開始フレームの瞬間を静止画にする,0
+--check@roop6:ループする,1
+--group
+--group:動画6詳細,false
+--separator:再生速度
+--select@speed_select6:再生速度A=3,*0.1=0,*0.25=1,*0.5=2,等速=3,*1.25=4,*1.5=5,*2=6,*3=7,*5=8,*10=9
+--track@movie_speed6:再生速度,0,800,100,1
+--separator:削減
+--track@clip_all6:上下左右削減,0,100,0,1
+--track@clip_lr6:左右削減,0,100,0,1
+--track@clip_l6:左削減,0,100,0,1
+--track@clip_r6:右削減,0,100,0,1
+--track@clip_ub6:上下削減,0,100,0,1
+--track@clip_u6:上削減,0,100,0,1
+--track@clip_d6:下削減,0,100,0,1
+--check@fill6:個別の削除部分に合わせて動画を引き延ばす,1
+--separator:拡大
+--track@zoom_whole6:全体拡大,0,10000,100,1
+--track@zoom_x6:拡大X,0,10000,100,1
+--track@zoom_y6:拡大Y,0,10000,100,1
+--track@zoom_posx6:拡大場所X,-10000,10000,0,0.01
+--track@zoom_posy6:拡大場所Y,-10000,10000,0,0.01
+--group
+
+--group:全体,true
+--separator:全体
+--track@common_all:上下左右削減,0,100,0,1
+--track@common_lr:左右削減,0,100,0,1
+--track@common_ub:上下削減,0,100,0,1
+--check@fill:削減部分に合わせて動画を引き延ばす,1
+--select@arrangement:表示タイプ=0,交互に並べる=0,横に並べる=1,縦に並べる=2,1つ目縦いっぱい残り横=3,1つ目横いっぱい残り横=4,2つ目まで縦いっぱい残り横=5,2つ目まで横いっぱい残り横=6
+--track@line:分割ライン,0,500,1,1
+--track@line_w:分割ライン横,0,500,0,1
+--track@line_h:分割ライン縦,0,500,0,1
+--color@line_col:分割ライン色,0xffffff
+--check@line_avoid:分割ラインを避けて動画を配置する,0
+--separator:拡大
+--track@zoom_whole:全体拡大,0,10000,100,1
+--track@zoom_x:拡大X,0,10000,100,1
+--track@zoom_y:拡大Y,0,10000,100,1
+--track@zoom_posx:拡大場所X,-10000,10000,0,0.01
+--track@zoom_posy:拡大場所Y,-10000,10000,0,0.01
+--group
+
+-- パラメータを1つのテーブルにパックして、メインスコープのローカル変数消費数を劇的に削減する
+local cfg = {
+    common_all = common_all,
+    common_lr = common_lr,
+    common_ub = common_ub,
+    fill = fill,
+    arrangement = arrangement,
+    line = line,
+    line_w = line_w,
+    line_h = line_h,
+    line_col = line_col,
+    line_avoid = line_avoid,
+    
+    -- 全体ズーム
+    zoom_whole = zoom_whole,
+    zoom_x = zoom_x,
+    zoom_y = zoom_y,
+    zoom_posx = zoom_posx,
+    zoom_posy = zoom_posy,
+    
+    movies = {movie1, movie2, movie3, movie4, movie5, movie6},
+    orders = {order1, order2, order3, order4, order5, order6},
+    
+    start_seconds = {
+        start_minuts1, start_minuts2, start_minuts3, start_minuts4, start_minuts5, start_minuts6
+    },
+    start_frames = {
+        start_frame1, start_frame2, start_frame3, start_frame4, start_frame5, start_frame6
+    },
+    end_seconds = {
+        end_minuts1, end_minuts2, end_minuts3, end_minuts4, end_minuts5, end_minuts6
+    },
+    end_frames = {
+        end_frame1, end_frame2, end_frame3, end_frame4, end_frame5, end_frame6
+    },
+    movie_speeds = {
+        movie_speed1, movie_speed2, movie_speed3, movie_speed4, movie_speed5, movie_speed6
+    },
+    speed_selects = {
+        speed_select1, speed_select2, speed_select3, speed_select4, speed_select5, speed_select6
+    },
+    loops = {
+        roop1, roop2, roop3, roop4, roop5, roop6
+    },
+    images = {
+        image1, image2, image3, image4, image5, image6
+    },
+    dup_movies = {
+        dup_movie1, dup_movie2, dup_movie3, dup_movie4, dup_movie5, dup_movie6
+    },
+    
+    clip_alls = {
+        clip_all1, clip_all2, clip_all3, clip_all4, clip_all5, clip_all6
+    },
+    clip_lrs = {
+        clip_lr1, clip_lr2, clip_lr3, clip_lr4, clip_lr5, clip_lr6
+    },
+    clip_ls = {
+        clip_l1, clip_l2, clip_l3, clip_l4, clip_l5, clip_l6
+    },
+    clip_rs = {
+        clip_r1, clip_r2, clip_r3, clip_r4, clip_r5, clip_r6
+    },
+    clip_ubs = {
+        clip_ub1, clip_ub2, clip_ub3, clip_ub4, clip_ub5, clip_ub6
+    },
+    clip_us = {
+        clip_u1, clip_u2, clip_u3, clip_u4, clip_u5, clip_u6
+    },
+    clip_ds = {
+        clip_d1, clip_d2, clip_d3, clip_d4, clip_d5, clip_d6
+    },
+    fill_indivs = {
+        fill1, fill2, fill3, fill4, fill5, fill6
+    },
+    
+    zoom_wholes = {
+        zoom_whole1, zoom_whole2, zoom_whole3, zoom_whole4, zoom_whole5, zoom_whole6
+    },
+    zoom_xs = {
+        zoom_x1, zoom_x2, zoom_x3, zoom_x4, zoom_x5, zoom_x6
+    },
+    zoom_ys = {
+        zoom_y1, zoom_y2, zoom_y3, zoom_y4, zoom_y5, zoom_y6
+    },
+    zoom_posxs = {
+        zoom_posx1, zoom_posx2, zoom_posx3, zoom_posx4, zoom_posx5, zoom_posx6
+    },
+    zoom_posys = {
+        zoom_posy1, zoom_posy2, zoom_posy3, zoom_posy4, zoom_posy5, zoom_posy6
+    }
+}
+
+-- 実際の処理を別関数として定義。この関数内のローカル変数はメイン関数とは別枠のスコープとなるため、200制限を回避できます。
+local function run_script(cfg)
+    local speed_mults = {0.1, 0.25, 0.5, 1.0, 1.25, 1.5, 2.0, 3.0, 5.0, 10.0}
+
+    -- ファイル名取得用の安全な関数 (obj.getvalue へのフォールバック)
+    local function get_movie_path(idx)
+        local val = cfg.movies[idx]
+        if val and val ~= "" then
+            return val
+        end
+        -- エイリアス読み込み時などのフォールバック
+        val = obj.getvalue("複数画面表示v4", "動画" .. idx)
+        if val and val ~= "" then
+            return val
+        end
+        return ""
+    end
+
+    -- 各動画の準備処理 (表示順と前動画複製の解決)
+    local slots = {}
+    for s = 1, 6 do slots[s] = nil end
+
+    local video_info = {}
+    local sum = 0
+    for i = 1, 6 do
+        local path = get_movie_path(i)
+        
+        -- 自分より前の動画を読み込むチェック（dup_movie）の処理。降順（直近優先）で探索
+        local dup_val = cfg.dup_movies[i] or 0
+        if path == "" and dup_val == 1 and i >= 2 then
+            for prev = i - 1, 1, -1 do
+                local prev_path = get_movie_path(prev)
+                if prev_path ~= "" then
+                    path = prev_path
+                    break
+                end
+            end
+        end
+        
+        if path ~= "" then
+            sum = sum + 1
+            video_info[i] = {
+                path = path,
+                order_val = cfg.orders[i] or 0,
+                dest = i,
+                prio = 0
+            }
+        end
+    end
+
+    -- 表示順序の依存再帰解決関数
+    local function resolve_order(i, visited)
+        if not video_info[i] then return i end
+        local order_val = video_info[i].order_val
+        if order_val == 0 then return i end
+        
+        visited = visited or {}
+        if visited[i] then return i end
+        visited[i] = true
+        
+        return resolve_order(order_val, visited)
+    end
+
+    -- 各動画の dest (配置先) と prio (優先度) を決定
+    for i, info in pairs(video_info) do
+        if info.order_val > 0 then
+            local target_k = info.order_val
+            if video_info[target_k] then
+                info.dest = resolve_order(target_k)
+                info.prio = 2 -- 有効な動画への明示的指定（高優先度）
+            else
+                info.dest = target_k
+                info.prio = 1 -- 無効な動画への明示的指定（中優先度）
+            end
+        else
+            info.dest = i
+            info.prio = 0 -- 標準（低優先度）
+        end
+    end
+
+    -- 優先度順にスロットに配置
+    local process_order = {}
+    for i, info in pairs(video_info) do
+        table.insert(process_order, { idx = i, info = info })
+    end
+    table.sort(process_order, function(a, b)
+        if a.info.prio ~= b.info.prio then
+            return a.info.prio > b.info.prio
+        else
+            return a.idx < b.idx
+        end
+    end)
+
+    for _, item in ipairs(process_order) do
+        local idx = item.idx
+        local info = item.info
+        local dest = info.dest
+        
+        if dest < 1 then dest = 1 end
+        if dest > 6 then dest = 6 end
+
+        if not slots[dest] then
+            slots[dest] = { path = info.path, idx = idx }
+        else
+            -- 競合時は右優先探索
+            local resolved = false
+            for s = dest + 1, 6 do
+                if not slots[s] then
+                    slots[s] = { path = info.path, idx = idx }
+                    resolved = true
+                    break
+                end
+            end
+            if not resolved then
+                for s = dest - 1, 1, -1 do
+                    if not slots[s] then
+                        slots[s] = { path = info.path, idx = idx }
+                        resolved = true
+                        break
+                    end
+                end
+            end
+        end
+    end
+
+    -- slots から並べ替えた using_movies 配列を作成
+    local using_movies = {}
+    local actual_sum = 0
+    for s = 1, 6 do
+        if slots[s] then
+            actual_sum = actual_sum + 1
+            using_movies[actual_sum - 1] = slots[s]
+        end
+    end
+
+    -- 画面サイズの横と縦を変数に代入
+    local w,h = obj.screen_w,obj.screen_h
+
+    -- 描画先を仮想バッファに指定
+    obj.setoption("drawtarget","tempbuffer",w,h)
+
+    -- 本処理
+    if actual_sum ~= 0 then
+        -- 各動画の位置とサイズを格納するテーブル
+        local rects = {}
+        
+        if cfg.arrangement == 0 then
+            -- 0: 交互に並べる
+            local cols, rows
+            if actual_sum <= 1 then
+                cols, rows = 1, 1
+            elseif actual_sum == 2 then
+                cols, rows = 2, 1
+            elseif actual_sum <= 4 then
+                cols, rows = 2, 2
+            else
+                cols, rows = 3, 2
+            end
+            
+            local cell_w = w / cols
+            local cell_h = h / rows
+            for i = 1, actual_sum do
+                local c = (i - 1) % cols
+                local r = math.floor((i - 1) / cols)
+                rects[i] = {
+                    x = -w/2 + (c + 0.5) * cell_w,
+                    y = -h/2 + (r + 0.5) * cell_h,
+                    w = cell_w,
+                    h = cell_h
+                }
+            end
+        elseif cfg.arrangement == 1 then
+            -- 1: 横に並べる
+            local cell_w = w / actual_sum
+            local cell_h = h
+            for i = 1, actual_sum do
+                rects[i] = {
+                    x = -w/2 + (i - 0.5) * cell_w,
+                    y = 0,
+                    w = cell_w,
+                    h = cell_h
+                }
+            end
+        elseif cfg.arrangement == 2 then
+            -- 2: 縦に並べる
+            local cell_w = w
+            local cell_h = h / actual_sum
+            for i = 1, actual_sum do
+                rects[i] = {
+                    x = 0,
+                    y = -h/2 + (i - 0.5) * cell_h,
+                    w = cell_w,
+                    h = cell_h
+                }
+            end
+        elseif cfg.arrangement == 3 then
+            -- 3: 1つ目縦いっぱい残り横
+            if actual_sum <= 1 then
+                rects[1] = { x = 0, y = 0, w = w, h = h }
+            else
+                rects[1] = { x = -w/4, y = 0, w = w/2, h = h }
+                local rem = actual_sum - 1
+                local cell_w = w / 2
+                local cell_h = h / rem
+                for i = 2, actual_sum do
+                    rects[i] = {
+                        x = w/4,
+                        y = -h/2 + (i - 1.5) * cell_h,
+                        w = cell_w,
+                        h = cell_h
+                    }
+                end
+            end
+        elseif cfg.arrangement == 4 then
+            -- 4: 1つ目横いっぱい残り横
+            if actual_sum <= 1 then
+                rects[1] = { x = 0, y = 0, w = w, h = h }
+            else
+                rects[1] = { x = 0, y = -h/4, w = w, h = h/2 }
+                local rem = actual_sum - 1
+                local cell_w = w / rem
+                local cell_h = h / 2
+                for i = 2, actual_sum do
+                    rects[i] = {
+                        x = -w/2 + (i - 1.5) * cell_w,
+                        y = h/4,
+                        w = cell_w,
+                        h = cell_h
+                    }
+                end
+            end
+        elseif cfg.arrangement == 5 then
+            -- 5: 2つ目まで縦いっぱい残り横
+            if actual_sum <= 2 then
+                local cell_w = w / 2
+                rects[1] = { x = -w/4, y = 0, w = cell_w, h = h }
+                rects[2] = { x = w/4, y = 0, w = cell_w, h = h }
+            else
+                rects[1] = { x = -w/3, y = 0, w = w/3, h = h }
+                rects[2] = { x = 0, y = 0, w = w/3, h = h }
+                local rem = actual_sum - 2
+                local cell_w = w / 3
+                local cell_h = h / rem
+                for i = 3, actual_sum do
+                    rects[i] = {
+                        x = w/3,
+                        y = -h/2 + (i - 2.5) * cell_h,
+                        w = cell_w,
+                        h = cell_h
+                    }
+                end
+            end
+        elseif cfg.arrangement == 6 then
+            -- 6: 2つ目まで横いっぱい残り横
+            if actual_sum <= 2 then
+                local cell_h = h / 2
+                rects[1] = { x = 0, y = -h/4, w = w, h = cell_h }
+                rects[2] = { x = 0, y = h/4, w = w, h = cell_h }
+            else
+                rects[1] = { x = 0, y = -h/3, w = w, h = h/3 }
+                rects[2] = { x = 0, y = 0, w = w, h = h/3 }
+                local rem = actual_sum - 2
+                local cell_w = w / rem
+                local cell_h = h / 3
+                for i = 3, actual_sum do
+                    rects[i] = {
+                        x = -w/2 + (i - 2.5) * cell_w,
+                        y = h/3,
+                        w = cell_w,
+                        h = cell_h
+                    }
+                end
+            end
+        end
+
+        -- 分割ラインを避ける処理
+        if cfg.line_avoid == 1 and (cfg.line ~= 0 or cfg.line_w ~= 0 or cfg.line_h ~= 0) then
+            local lw = cfg.line + cfg.line_w
+            local lh = cfg.line + cfg.line_h
+            local margin = 0.01
+            for i = 1, actual_sum do
+                local r = rects[i]
+                local left = r.x - r.w / 2
+                local right = r.x + r.w / 2
+                local top = r.y - r.h / 2
+                local bottom = r.y + r.h / 2
+                
+                if left > -w/2 + margin then
+                    left = left + lw / 2
+                end
+                if right < w/2 - margin then
+                    right = right - lw / 2
+                end
+                if top > -h/2 + margin then
+                    top = top + lh / 2
+                end
+                if bottom < h/2 - margin then
+                    bottom = bottom - lh / 2
+                end
+                
+                r.w = math.max(0, right - left)
+                r.h = math.max(0, bottom - top)
+                r.x = left + r.w / 2
+                r.y = top + r.h / 2
+            end
+        end
+
+        -- 動画のロードと描画
+        for i = 1, actual_sum do
+            local movie_info = using_movies[i - 1]
+            local idx = movie_info.idx
+            local filepath = movie_info.path
+            
+            -- 各種設定値の取得
+            local start_sec = cfg.start_seconds[idx] or 0
+            local start_frm = cfg.start_frames[idx] or 0
+            local end_sec = cfg.end_seconds[idx] or 0
+            local end_frm = cfg.end_frames[idx] or 0
+            local speed_pct = cfg.movie_speeds[idx] or 100
+            
+            -- 再生速度Aの適用
+            local select_idx = cfg.speed_selects[idx] or 3
+            local speed_mult = speed_mults[select_idx + 1] or 1.0
+            local final_speed = speed_pct * speed_mult
+            
+            local is_loop = cfg.loops[idx] or 0
+            local is_image = cfg.images[idx] or 0
+            
+            local start_pos = start_sec + (start_frm / obj.framerate)
+            local end_pos = end_sec + (end_frm / obj.framerate)
+            
+            -- 仮ロードして総時間を取得
+            local total_time = obj.load("movie", filepath, start_pos)
+            
+            -- 有効な再生範囲（秒）の決定
+            local duration = 0
+            if end_pos > start_pos then
+                duration = end_pos - start_pos
+            elseif total_time and total_time > start_pos then
+                duration = total_time - start_pos
+            end
+            
+            -- ロード位置の計算
+            local time_to_load = start_pos
+            if is_image == 0 then
+                local elapsed = obj.time * (final_speed / 100)
+                if duration > 0 then
+                    if is_loop == 1 then
+                        time_to_load = start_pos + (elapsed % duration)
+                    else
+                        time_to_load = start_pos + math.min(elapsed, duration)
+                    end
+                else
+                    time_to_load = start_pos + elapsed
+                end
+            end
+            
+            -- 本ロード
+            obj.load("movie", filepath, time_to_load)
+            local org_w, org_h = obj.w, obj.h
+            
+            -- クリッピング量の算出 (一律と個別の合算)
+            local c_all = (cfg.common_all or 0) + (cfg.clip_alls[idx] or 0)
+            local c_lr  = ((cfg.common_lr or 0) / 2) + (cfg.clip_alls[idx] or 0) + ((cfg.clip_lrs[idx] or 0) / 2)
+            local c_ub  = ((cfg.common_ub or 0) / 2) + (cfg.clip_alls[idx] or 0) + ((cfg.clip_ubs[idx] or 0) / 2)
+            
+            -- 各方向の基本削減率 (0〜100)
+            local ratio_l = math.min(100, c_all + c_lr + (cfg.clip_ls[idx] or 0))
+            local ratio_r = math.min(100, c_all + c_lr + (cfg.clip_rs[idx] or 0))
+            local ratio_u = math.min(100, c_all + c_ub + (cfg.clip_us[idx] or 0))
+            local ratio_d = math.min(100, c_all + c_ub + (cfg.clip_ds[idx] or 0))
+            
+            -- ピクセル削減ベース値
+            local clip_l_px = org_w * (ratio_l / 100)
+            local clip_r_px = org_w * (ratio_r / 100)
+            local clip_u_px = org_h * (ratio_u / 100)
+            local clip_d_px = org_h * (ratio_d / 100)
+            
+            -- クリッピング適用前の有効サイズ
+            local w_rem = org_w - (clip_l_px + clip_r_px)
+            local h_rem = org_h - (clip_u_px + clip_d_px)
+            
+            -- 個別ズームと全体ズームの合成
+            local z_whole_g = cfg.zoom_whole or 100
+            local z_x_g     = cfg.zoom_x or 100
+            local z_y_g     = cfg.zoom_y or 100
+            local z_posx_g  = cfg.zoom_posx or 0
+            local z_posy_g  = cfg.zoom_posy or 0
+
+            local z_whole_i = cfg.zoom_wholes[idx] or 100
+            local z_x_i     = cfg.zoom_xs[idx] or 100
+            local z_y_i     = cfg.zoom_ys[idx] or 100
+            local z_posx_i  = cfg.zoom_posxs[idx] or 0
+            local z_posy_i  = cfg.zoom_posys[idx] or 0
+            
+            -- 全体の拡大率（X, Y）
+            local Sx = (z_whole_g / 100) * (z_x_g / 100) * (z_whole_i / 100) * (z_x_i / 100)
+            local Sy = (z_whole_g / 100) * (z_y_g / 100) * (z_whole_i / 100) * (z_y_i / 100)
+            if Sx <= 0.001 then Sx = 0.001 end
+            if Sy <= 0.001 then Sy = 0.001 end
+            
+            -- ズーム後の切り出しサイズ
+            local min_size = 1.0
+            local w_rem_cut = math.max(min_size, w_rem / Sx)
+            local h_rem_cut = math.max(min_size, h_rem / Sy)
+            
+            -- ズーム中心位置の制限 (はみ出し防止)
+            -- 合成されたズーム中心座標 Px, Py
+            local z_posx_combined = z_posx_g + z_posx_i
+            local z_posy_combined = z_posy_g + z_posy_i
+
+            local px_limit_x = math.max(0, org_w / 2 - w_rem_cut / 2)
+            local px_limit_y = math.max(0, org_h / 2 - h_rem_cut / 2)
+            local bounded_px = math.max(-px_limit_x, math.min(px_limit_x, z_posx_combined))
+            local bounded_py = math.max(-px_limit_y, math.min(px_limit_y, z_posy_combined))
+            
+            -- 最終クリッピングピクセル値 (ズーム＋個別削減の統合)
+            local clip_l_final = math.max(0, org_w / 2 + bounded_px - w_rem_cut / 2)
+            local clip_r_final = math.max(0, org_w / 2 - bounded_px - w_rem_cut / 2)
+            local clip_u_final = math.max(0, org_h / 2 + bounded_py - h_rem_cut / 2)
+            local clip_d_final = math.max(0, org_h / 2 - bounded_py - h_rem_cut / 2)
+            
+            -- AviUtlのエフェクト適用
+            obj.effect("クリッピング", 
+                "上", clip_u_final, 
+                "下", clip_d_final, 
+                "左", clip_l_final, 
+                "右", clip_r_final, 
+                "中心の位置を変更", 0
+            )
+            
+            local target_w = rects[i].w
+            local target_h = rects[i].h
+            
+            -- 引き延ばし (全体優先)
+            local is_fill_active = (cfg.fill == 1) or (cfg.fill_indivs[idx] == 1)
+            
+            local new_w, new_h
+            if is_fill_active then
+                new_w = target_w
+                new_h = target_h
+            else
+                local scale_w = w_rem_cut / org_w
+                local scale_h = h_rem_cut / org_h
+                new_w = target_w * scale_w
+                new_h = target_h * scale_h
+            end
+            
+            obj.effect("リサイズ", 
+                "拡大率", 100.000, 
+                "X", new_w, 
+                "Y", new_h, 
+                "補間なし", 0, 
+                "ピクセル数でサイズ指定", 1
+            )
+            
+            obj.draw(rects[i].x, rects[i].y)
+        end
+
+        -- 分割ラインの描画
+        if cfg.line ~= 0 or cfg.line_w ~= 0 or cfg.line_h ~= 0 then
+            local function draw_line(lx, ly, lw, lh)
+                obj.load("figure", "四角形", cfg.line_col, 100)
+                obj.effect("リサイズ", 
+                    "拡大率", 100.000, 
+                    "X", lw, 
+                    "Y", lh, 
+                    "補間なし", 0, 
+                    "ピクセル数でサイズ指定", 1
+                )
+                obj.draw(lx, ly)
+            end
+
+            if cfg.arrangement == 0 then
+                local cols, rows
+                if actual_sum <= 1 then
+                    cols, rows = 1, 1
+                elseif actual_sum == 2 then
+                    cols, rows = 2, 1
+                elseif actual_sum <= 4 then
+                    cols, rows = 2, 2
+                else
+                    cols, rows = 3, 2
+                end
+                local cell_w = w / cols
+                local cell_h = h / rows
+                for c = 1, cols - 1 do
+                    draw_line(-w/2 + c * cell_w, 0, cfg.line + cfg.line_w, h)
+                end
+                for r = 1, rows - 1 do
+                    draw_line(0, -h/2 + r * cell_h, w, cfg.line + cfg.line_h)
+                end
+            elseif cfg.arrangement == 1 then
+                local cell_w = w / actual_sum
+                for c = 1, actual_sum - 1 do
+                    draw_line(-w/2 + c * cell_w, 0, cfg.line + cfg.line_w, h)
+                end
+            elseif cfg.arrangement == 2 then
+                local cell_h = h / actual_sum
+                for r = 1, actual_sum - 1 do
+                    draw_line(0, -h/2 + r * cell_h, w, cfg.line + cfg.line_h)
+                end
+            elseif cfg.arrangement == 3 then
+                if actual_sum >= 2 then
+                    draw_line(0, 0, cfg.line + cfg.line_w, h)
+                    local rem = actual_sum - 1
+                    local cell_h = h / rem
+                    for r = 1, rem - 1 do
+                        draw_line(w/4, -h/2 + r * cell_h, w/2, cfg.line + cfg.line_h)
+                    end
+                end
+            elseif cfg.arrangement == 4 then
+                if actual_sum >= 2 then
+                    draw_line(0, 0, w, cfg.line + cfg.line_h)
+                    local rem = actual_sum - 1
+                    local cell_w = w / rem
+                    for c = 1, rem - 1 do
+                        draw_line(-w/2 + c * cell_w, h/4, cfg.line + cfg.line_w, h/2)
+                    end
+                end
+            elseif cfg.arrangement == 5 then
+                if actual_sum >= 3 then
+                    draw_line(-w/6, 0, cfg.line + cfg.line_w, h)
+                    draw_line(w/6, 0, cfg.line + cfg.line_w, h)
+                    local rem = actual_sum - 2
+                    local cell_h = h / rem
+                    for r = 1, rem - 1 do
+                        draw_line(w/3, -h/2 + r * cell_h, w/3, cfg.line + cfg.line_h)
+                    end
+                end
+            elseif cfg.arrangement == 6 then
+                if actual_sum >= 3 then
+                    draw_line(0, -h/6, w, cfg.line + cfg.line_h)
+                    draw_line(0, h/6, w, cfg.line + cfg.line_h)
+                    local rem = actual_sum - 2
+                    local cell_w = w / rem
+                    for c = 1, rem - 1 do
+                        draw_line(-w/2 + c * cell_w, h/3, cfg.line + cfg.line_w, h/3)
+                    end
+                end
+            end
+        end
+
+        obj.setoption("drawtarget","framebuffer")
+        obj.load("tempbuffer")
+        return
+    else
+        obj.setoption("drawtarget","framebuffer")
+        obj.load("tempbuffer")
+        return
+    end
+end
+
+run_script(cfg)
