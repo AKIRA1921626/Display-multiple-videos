@@ -23,7 +23,7 @@
 --track@clip_ub1:上下削減1,0,100,0,1
 --track@clip_u1:上削減1,0,100,0,1
 --track@clip_d1:下削減1,0,100,0,1
---check@fill1:個別の削除部分に合わせて動画を引き延ばす1,1
+--check@fill1:個別の削除部分に合わせて動画を引き延ばす1,0
 --separator:拡大
 --track@zoom_whole1:全体拡大1,0,10000,100,1
 --track@zoom_x1:拡大X1,0,10000,100,1
@@ -56,7 +56,7 @@
 --track@clip_ub2:上下削減2,0,100,0,1
 --track@clip_u2:上削減2,0,100,0,1
 --track@clip_d2:下削減2,0,100,0,1
---check@fill2:個別の削除部分に合わせて動画を引き延ばす2,1
+--check@fill2:個別の削除部分に合わせて動画を引き延ばす2,0
 --separator:拡大
 --track@zoom_whole2:全体拡大2,0,10000,100,1
 --track@zoom_x2:拡大X2,0,10000,100,1
@@ -89,7 +89,7 @@
 --track@clip_ub3:上下削減3,0,100,0,1
 --track@clip_u3:上削減3,0,100,0,1
 --track@clip_d3:下削減3,0,100,0,1
---check@fill3:個別の削除部分に合わせて動画を引き延ばす3,1
+--check@fill3:個別の削除部分に合わせて動画を引き延ばす3,0
 --separator:拡大
 --track@zoom_whole3:全体拡大3,0,10000,100,1
 --track@zoom_x3:拡大X3,0,10000,100,1
@@ -122,7 +122,7 @@
 --track@clip_ub4:上下削減4,0,100,0,1
 --track@clip_u4:上削減4,0,100,0,1
 --track@clip_d4:下削減4,0,100,0,1
---check@fill4:個別の削除部分に合わせて動画を引き延ばす4,1
+--check@fill4:個別の削除部分に合わせて動画を引き延ばす4,0
 --separator:拡大
 --track@zoom_whole4:全体拡大4,0,10000,100,1
 --track@zoom_x4:拡大X4,0,10000,100,1
@@ -155,7 +155,7 @@
 --track@clip_ub5:上下削減5,0,100,0,1
 --track@clip_u5:上削減5,0,100,0,1
 --track@clip_d5:下削減5,0,100,0,1
---check@fill5:個別の削除部分に合わせて動画を引き延ばす5,1
+--check@fill5:個別の削除部分に合わせて動画を引き延ばす5,0
 --separator:拡大
 --track@zoom_whole5:全体拡大5,0,10000,100,1
 --track@zoom_x5:拡大X5,0,10000,100,1
@@ -188,7 +188,7 @@
 --track@clip_ub6:上下削減6,0,100,0,1
 --track@clip_u6:上削減6,0,100,0,1
 --track@clip_d6:下削減6,0,100,0,1
---check@fill6:個別の削除部分に合わせて動画を引き延ばす6,1
+--check@fill6:個別の削除部分に合わせて動画を引き延ばす6,0
 --separator:拡大
 --track@zoom_whole6:全体拡大6,0,10000,100,1
 --track@zoom_x6:拡大X6,0,10000,100,1
@@ -204,6 +204,8 @@
 --track@common_ub:上下削減,0,100,0,1
 --check@fill:削減部分に合わせて動画を引き延ばす,1
 --select@arrangement:表示タイプ=0,交互に並べる=0,横に並べる=1,縦に並べる=2,1つ目縦いっぱい残り横=3,1つ目横いっぱい残り横=4,2つ目まで縦いっぱい残り横=5,2つ目まで横いっぱい残り横=6
+--check@display_frm_time:時間とフレームを表示(出力される動画には反映されません),0
+--check@tmp_via:描画を仮想バッファ経由にする,0
 --track@line:分割ライン,0,500,1,1
 --track@line_w:分割ライン横,0,500,0,1
 --track@line_h:分割ライン縦,0,500,0,1
@@ -448,8 +450,10 @@ local function run_script(cfg)
     -- 画面サイズの横と縦を変数に代入
     local w,h = obj.screen_w,obj.screen_h
 
-    -- 描画先を仮想バッファに指定
-    obj.setoption("drawtarget","tempbuffer",w,h)
+    -- 「描画を仮想バッファ経由にする」にcheckがあった場合、描画先を仮想バッファに指定
+    if tmp_via == 1 then
+        obj.setoption("drawtarget","tempbuffer",w,h)
+    end
 
     -- 本処理
     if actual_sum ~= 0 then
@@ -767,6 +771,32 @@ local function run_script(cfg)
             )
             
             obj.draw(rects[i].x, rects[i].y)
+
+            -- 「時間とフレームを表示」にcheckが入っており、動画が出力中じゃなければ、現在のフレームと時間を表示
+            if display_frm_time == 1 and (not obj.getinfo("saving")) then
+                
+                -- 表示処理
+                local d_total_time = obj.load("movie",filepath)
+                local d_total_frm = obj.load("movie.frame",filepath)
+                obj.load("text", string.format("総動画時間: %.2f", d_total_time))
+                obj.effect("縁取り","サイズ",5,"ぼかし",5,"縁色","000000")
+                obj.draw(rects[i].x, rects[i].y - 100)
+                obj.load("text", string.format("総フレーム: %d", d_total_frm))
+                obj.effect("縁取り","サイズ",5,"ぼかし",5,"縁色","000000")
+                obj.draw(rects[i].x, rects[i].y + 50)
+
+                local n_time,n_frm = obj.time,obj.frame
+                local e_time = obj.totaltime - cfg.end_seconds[idx]
+                local u_time = n_time + (obj.totaltime - e_time - (cfg.end_seconds[idx] - cfg.start_seconds[idx]))
+                obj.load("text", string.format("現在時間: %.2f", u_time))
+                obj.effect("縁取り","サイズ",5,"ぼかし",5,"縁色","000000")
+                obj.draw(rects[i].x, rects[i].y - 50)
+                local e_frm = obj.totalframe - cfg.end_frames[idx]
+                local u_frm = n_frm + (obj.totalframe - e_frm - (cfg.end_frames[idx] - cfg.start_frames[idx]))
+                obj.load("text", string.format("現在フレーム: %d", u_frm + 1))
+                obj.effect("縁取り","サイズ",5,"ぼかし",5,"縁色","000000")
+                obj.draw(rects[i].x, rects[i].y + 100)
+            end
         end
 
         -- 分割ラインの描画
@@ -853,12 +883,13 @@ local function run_script(cfg)
             end
         end
 
-        obj.setoption("drawtarget","framebuffer")
-        obj.load("tempbuffer")
+    -- 「描画を仮想バッファ経由にする」にcheckがあった場合、描画先をフレームバッファに戻す
+        if tmp_via == 1 then
+            obj.setoption("drawtarget","framebuffer")
+            obj.load("tempbuffer")
+        end
         return
     else
-        obj.setoption("drawtarget","framebuffer")
-        obj.load("tempbuffer")
         return
     end
 end
